@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
-import { PreTesting } from './entities/pre_testing.entity';
+import { PreTesting } from '../entities/pre_testing.entity';
 
 @Injectable()
 export class PreTestingService {
