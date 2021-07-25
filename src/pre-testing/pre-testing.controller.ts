@@ -22,10 +22,20 @@ export class PreTestingController {
 	}
 
 	@Get('/html')
-	async openHtml() {
-		//return '<h1>hello</h1>'
-		console.log(readFileSync('src/pre-testing/test.html', 'utf8'))
-		return readFileSync('src/pre-testing/test.html', 'utf8')
-		//const file = fileURLToPath('file://localhost/C:/Users/choco/contest/momo_Server/momo/src/pre-testing/test.html')
+	openHtml() {
+		return readFileSync('src/pre-testing/locationSearchTest.html', 'utf8')
+	}
+
+	@Get('/connectingTest')
+	connectHtmlZ() {
+		console.log("hi")
+		return "success"
+	}
+
+	@Get('/connectingTest/:zoneCode/:address')
+	connectHtml(@Param('zoneCode') zoneCode:string, @Param('address') address:string) {
+		console.log("hi")
+		console.log(`zoneCode: ${zoneCode}  address: ${address}`)
+		return "success"
 	}
 }

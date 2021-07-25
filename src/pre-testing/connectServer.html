@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		let f = () => {
+			let httpObj = new XMLHttpRequest();
+			httpObj.onreadystatechange = (e) => {
+				let req = e.target;
+				console.log(req);
+				if(req.readyState === XMLHttpRequest.DONE) {
+					if(req.status === 200) {
+						console.log(req.response);
+						console.log(JSON.parse(req.responseText));
+					}
+				}
+			}
+			httpObj.open("GET", "https://948604025498.ngrok.io/pre-testing/connectingTest");
+			httpObj.send();
+		}
+		f();
+	</script>
+</body>
+</html>

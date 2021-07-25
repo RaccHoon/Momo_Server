@@ -8,8 +8,30 @@
 
 	<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script>
-		new daum.Postcode({
-            oncomplete: function(data) {
+        let url = "https://2e90be0319e5.ngrok.io/pre-testing/connectingTest";
+        let postCode = '';
+        let address = '';
+
+        let sendToServer = function() {      
+            let httpObj = new XMLHttpRequest();
+            httpObj.onreadystatechange = (e) => {
+                let req = e.target;
+                console.log(req);
+                if(req.readyState === XMLHttpRequest.DONE) {
+                    if(req.status === 200) {
+                        console.log(req.response);
+                        console.log(JSON.parse(req.responseText));
+                    }
+                }
+            }
+            url = url+'/'+ postCode + '/'+ address
+            console.log(url)
+            httpObj.open("GET", url);
+            httpObj.send();
+        }
+
+		let daumObj = new daum.Postcode({
+            oncomplete: async function(data) {
                 // 팝업에서 검색결과 항목을 클릭했을때 실행할 코드를 작성하는 부분.
 
                 // 각 주소의 노출 규칙에 따라 주소를 조합한다.
@@ -26,9 +48,12 @@
                 // 우편번호와 주소 정보를 해당 필드에 넣는다.
                 document.getElementById('sample6_postcode').value = data.zonecode;
                 document.getElementById("sample6_address").value = addr;
+                postCode = data.zonecode;
+                address = addr
+                await sendToServer();
             }
-        }).open();
+        })
+        daumObj.open();
 	</script>
-
 </body>
 </html>
