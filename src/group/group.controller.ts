@@ -26,4 +26,9 @@ export class GroupController {
 	async getInfo(@Param('id') id:string) {
 		return await this.groupService.getInfo(id);
 	}
+
+	@Get('/member/:groupId/:userId')
+	async putNewMember(@Param('groupId') groupId, @Param('userId') userId:string) {
+		await this.groupService.putNewMember(groupId, userId)
+	}
 }

@@ -19,7 +19,7 @@ export class GroupService {
 	}
 
 	async getInfo(id:string) {
-		await this.groupRepo.find({id: id})
+		return await this.groupRepo.find({id: id})
 	}
 
 	async getInfoByUserId(id:string) {
@@ -39,5 +39,11 @@ export class GroupService {
 				})
 		}
 		return requestedGroups
+	}
+
+	async putNewMember(groupId:string, userId:string) {
+		let members = (await this.groupRepo.findOne({id: groupId})).memberIds
+		members.push(userId)
+		await this.groupRepo.update({ id: groupId }, { memberIds: members });
 	}
 }
