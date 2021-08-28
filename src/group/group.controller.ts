@@ -16,14 +16,14 @@ export class GroupController {
 	async deleteAll() {
 		await this.groupService.deleteAll();
 	}
+	
+	@Get('/info/user/:userId')
+	async getInfoByUserId(@Param('userId') id:string) {
+		return await this.groupService.getInfoByUserId(id);
+	}
 
 	@Get('/info/:id')
 	async getInfo(@Param('id') id:string) {
 		return await this.groupService.getInfo(id);
-	}
-
-	@Get('/info/user/:userId')
-	async getInfoByUserId(@Param('id') id:string) {
-		return await this.groupService.getInfoByUserId(id);
 	}
 }

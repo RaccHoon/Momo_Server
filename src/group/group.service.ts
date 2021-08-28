@@ -23,7 +23,11 @@ export class GroupService {
 	}
 
 	async getInfoByUserId(id:string) {
-		const groupInfos = await this.groupRepo.find({})
+		const groupInfos = await this.groupRepo.find({
+			order: {
+				createdDate: 'DESC'
+				}
+		})
 		const requestedGroups = []
 		
 		for(let group of groupInfos) {
