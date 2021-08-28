@@ -1,9 +1,12 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Group {
 	@PrimaryGeneratedColumn('uuid')
-	id: string	
+	id: string
+
+	@CreateDateColumn({"type": "timestamp"})
+	createdDate: Date
 
 	@Column()
 	name: string
@@ -25,4 +28,7 @@ export class Group {
 
 	@Column('simple-array')
 	hostAvailable: string[]
+
+	@Column('simple-array')
+	memberIds: string[]
 }

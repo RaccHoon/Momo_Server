@@ -10,6 +10,10 @@ export class PreTestingService {
 		private preTestingRepo: Repository<PreTesting>		
 	){}
 
+	async deleteAll() {
+		await this.preTestingRepo.delete({})
+	}
+
 	async showAll() {
 		return await this.preTestingRepo.find({});
 	}

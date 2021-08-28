@@ -1,4 +1,4 @@
-import { Controller, Get, Param, UseInterceptors } from '@nestjs/common';
+import { Controller, Delete, Get, Param, UseInterceptors } from '@nestjs/common';
 import { AnyFilesInterceptor } from '@nestjs/platform-express';
 import { createReadStream, fstat, readFile, readFileSync } from 'fs';
 import { join } from 'path';
@@ -14,6 +14,11 @@ export class PreTestingController {
 	@Get('/users')
 	async showAll() {
 		return await this.pre_testingService.showAll();
+	}
+
+	@Delete('/deleteAll')
+	async deleteAll() {
+		await this.pre_testingService.deleteAll()
 	}
 
 	@Get('/newUser/:name')
